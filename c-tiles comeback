@@ -1,0 +1,71 @@
+#include<bits/stdc++.h>
+
+#include <iostream>
+
+using namespace std;
+#define ll long long 
+
+int main()
+{
+   int t;
+   cin>>t;
+   while(t--){
+       ll n,k;
+       cin>>n>>k;
+       ll a[n+1];
+       for(int i=1;i<=n;i++){
+           cin>>a[i];
+       }
+       
+       if(a[1]==a[n]){
+           int cnt=0;
+           map<int,int> mp;
+           for(int i=1;i<=n;i++){
+                mp[a[i]]++;
+           }
+         
+           if(mp[a[n]]>=k){
+               cout<<"YES"<<endl;
+           }
+           else{
+               cout<<"NO"<<endl;
+           }
+       }
+       else{
+           int pos=0;
+           int cnt=0;
+           int ok=0,done=0;
+           for(int i=1;i<=n;i++){
+               if(a[i]==a[1]){
+                   cnt++;
+               }
+               if(cnt==k){
+                   ok=1;
+                   pos=i;
+                   break;
+               }
+           }
+         
+           cnt=0;
+           
+           for(int i=n;i>pos;i--){
+               if(a[i]==a[n]){
+                   cnt++;
+               }
+               if(cnt==k){
+                   done=1;
+                   break;
+               }
+           }
+        
+           if(ok==1 && done ==1){
+               cout<<"YES"<<endl;
+           }
+           else{
+               cout<<"NO"<<endl;
+           }
+       }
+   }
+
+    return 0;
+}
